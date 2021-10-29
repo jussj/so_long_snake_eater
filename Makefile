@@ -29,7 +29,7 @@ $(LIBFT):
 
 $(MLX):		
 			@echo "\e[34mMINILIBX COMPILATION...\e[0m"
-			@cd minilibx-linux && make
+			@cd minilibx-linux && ./configure && make
 
 $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) $^ -L "libft" -L "minilibx-linux" -lmlx -lft -lbsd -lXext -lX11 -lm -o $(NAME)

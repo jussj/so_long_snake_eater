@@ -12,7 +12,7 @@
 
 # include "../libft/libft.h"
 
-# define CELL_WIDTH 20
+# define CELL_WIDTH 40
 # define WHITE 0x00FFFFFF
 # define BLUE 0x000000FF
 # define RED 0x00FF0000
@@ -103,5 +103,7 @@ int			cmd_right(t_data *data);
 int			cmd_up(t_data *data);
 int			cmd_down(t_data *data);
 int			close_window(t_data *data);
+
+int			debug_info(t_data *data);
 
 #endif

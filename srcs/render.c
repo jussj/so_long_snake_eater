@@ -49,6 +49,8 @@ int render_cell(t_data *data, double x, double y, int color)
 	return (0);
 }
 
+//int render_collect(t_data *data)
+
 int render_map(t_data *data)
 {
 	int 	i;
@@ -78,16 +80,20 @@ int	render_player(t_data *data)
 	int x;
 	int y;
 
-	x = data->player->x * CELL_WIDTH + CELL_WIDTH / 4;
-	y = data->player->y * CELL_WIDTH + CELL_WIDTH / 4;
+//	x = data->player->x * CELL_WIDTH + CELL_WIDTH / 4;
+//	y = data->player->y * CELL_WIDTH + CELL_WIDTH / 4;
+	x = data->player->x * CELL_WIDTH;
+	y = data->player->y * CELL_WIDTH;
 	i = y;
 //	render_angle(data, BLACK, 20);
-	while (i < y + CELL_WIDTH / 2)
+//	while (i < y + CELL_WIDTH / 2)
+	while (i < y + CELL_WIDTH)
 	{
 		j = x;
-		while (j < x + CELL_WIDTH / 2)
+//		while (j < x + CELL_WIDTH / 2)
+		while (j < x + CELL_WIDTH)
 		{
-			img_pix_put(data->img, j, i, BLACK);
+			img_pix_put(data->img, j, i, WHITE);
 			j++;
 		}
 		i++;
@@ -104,6 +110,7 @@ int render(t_data *data)
 	render_map(data);
 	render_player(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->mlx_img, 0, 0);
+	debug_info(data);
 	return (0);
 }
 
@@ -119,7 +126,6 @@ int render_init(t_data *data)
 		return (1);
 	}
 	data->img->mlx_img = mlx_new_image(data->mlx_ptr, data->scene->win_width, data->scene->win_height);
-	printf("OK\n");
 	data->img->addr = mlx_get_data_addr(data->img->mlx_img, &data->img->bpp, 
 		&data->img->line_len, &data->img->endian);	
 	mlx_loop_hook(data->mlx_ptr, &render, data);
