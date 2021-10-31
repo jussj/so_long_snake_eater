@@ -24,6 +24,7 @@
 # define SPRITE 'C'
 # define EMPTY '0'
 # define PLAYER 'P'
+# define EXIT 'E'
 
 // SCENE RENDERING
 
@@ -45,6 +46,7 @@ typedef struct	s_scene
 	char 	**map;
 	char 	*tmp;
 	int		sprite;
+	int		exit;
 }				t_scene;
 
 typedef struct 	s_player
@@ -83,6 +85,7 @@ t_img		*img_init(void);
 
 int			parsing_scene(t_data *data, int ac, char **av);
 int			get_map(char *line, t_data *data);
+int			inspect_map(t_data *data);
 
 // RENDER
 
@@ -103,6 +106,9 @@ int			cmd_right(t_data *data);
 int			cmd_up(t_data *data);
 int			cmd_down(t_data *data);
 int			close_window(t_data *data);
+
+void cmd_collect(t_data *data, int pos_x, int pos_y);
+void cmd_exit(t_data *data, int pos_x, int pos_y);
 
 int			debug_info(t_data *data);
 

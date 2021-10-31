@@ -17,6 +17,7 @@ SRCS		=	srcs/parser.c		\
 				srcs/render.c		\
 				srcs/init.c			\
 				srcs/game_cmd.c		\
+				srcs/game_collect.c	\
 				srcs/utils/utils.c	\
 	
 OBJS		=	$(SRCS:.c=.o)
@@ -32,6 +33,7 @@ $(MLX):
 			@cd minilibx-linux && ./configure && make
 
 $(NAME):	$(OBJS)
+			@echo "\e[34mSO_LONG COMPILATION...\e[0m"
 			$(CC) $(CFLAGS) $^ -L "libft" -L "minilibx-linux" -lmlx -lft -lbsd -lXext -lX11 -lm -o $(NAME)
 
 %.o:		%.c

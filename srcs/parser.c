@@ -6,11 +6,35 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/10/28 17:28:26 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/10/31 17:18:33 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int inspect_map(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (data->scene->map[i])
+	{
+		j = 0;
+		while (data->scene->map[i][j])
+		{
+			if (data->scene->map[i][j] == SPRITE)
+				data->scene->sprite++;
+			else if (data->scene->map[i][j] == EXIT)
+				data->scene->exit++;
+			j++;
+		}
+		i++;
+	}
+	if (data->scene->sprite == 0 || data->scene->exit == 0)
+		return (1);
+	return (0);
+}
 
 int get_map(char *line, t_data *data)
 {
@@ -54,10 +78,10 @@ int parsing_scene(t_data *data, int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	while ((i = get_next_line(fd, &line)) > 0)
 		get_map(line, data);
-
 	get_map(line, data);
 	data->scene->map = ft_split(data->scene->tmp, '|');
-	free((char *)data->scene->tmp);
+	free(data->scene->tmp);
+	inspect_map(data);
 	printf("MAP:\n");
 	i = 0;
 	while (data->scene->map[i])
@@ -65,5 +89,7 @@ int parsing_scene(t_data *data, int ac, char **av)
 		printf("%s\n", data->scene->map[i]);
 		i++;
 	}
+	printf("SPRITE: %d\n", data->scene->sprite);
+	printf("EXIT: %d\n", data->scene->exit);
 	return (0);
 }

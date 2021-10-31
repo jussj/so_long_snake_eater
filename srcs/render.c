@@ -64,8 +64,13 @@ int render_map(t_data *data)
 		{
 			if (data->scene->map[i][j] == WALL)
 				render_cell(data, j, i, RED);
-			if (data->scene->map[i][j] == EMPTY || data->scene->map[i][j] == PLAYER)
+			if (data->scene->map[i][j] == EMPTY || data->scene->map[i][j] == SPRITE
+				|| data->scene->map[i][j] == PLAYER)
 				render_cell(data, j, i, GREEN);
+			if (data->scene->map[i][j] == SPRITE)
+				render_cell(data, j, i, BLUE);
+			if (data->scene->map[i][j] == EXIT)
+				render_cell(data, j, i, EXIT);
 			j++;				
 		}
 		i++;
@@ -119,7 +124,7 @@ int render_init(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->scene->win_width, data->scene->win_height, "cub2d");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->scene->win_width, data->scene->win_height, "so_long");
 	if (data->win_ptr == NULL)
 	{
 		free(data->win_ptr);
