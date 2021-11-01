@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:36:11 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/10/31 17:42:46 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/01 17:37:06 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int cmd_up(t_data *data)
 
 int cmd_down(t_data *data)
 {
-	float new_pos_x = data->player->y;
+	float new_pos_x = data->player->x;
 	float new_pos_y;
 
 //	new_pos_x = data->player->x - data->player->dir_x * data->player->speed;

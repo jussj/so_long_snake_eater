@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:35:56 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/10/31 18:14:49 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/01 17:39:00 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_scene *scene_init(void)
 	scene->win_height = 500;
 	scene->sprite = 0;
 	scene->exit = 0;
+	scene->player = 0;
 	scene->tmp = NULL;
 
 	return (scene);
@@ -61,9 +62,9 @@ t_player *player_init(void)
 	t_player *player;
 
 	player = malloc(sizeof(*player));
-	player->speed = 0.33;
-	player->dir_x = 0.66;
-	player->dir_y = 0.66;
+	player->speed = 1;
+	player->dir_x = 1;
+	player->dir_y = 1;
 
 // WHAT IS THE PLAN WHERE IS THE PLANE
 //	player->plan_x = 0.66;

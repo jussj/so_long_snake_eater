@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/01 11:52:46 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/01 17:55:56 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 /*
 int flood_fill(t_data *data)
 */
+
+// implement win lenght based on map lenght
+
 int is_map_valid(t_data *data)
 {
 	int he;

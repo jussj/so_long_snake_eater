@@ -16,7 +16,7 @@
 # define WHITE 0x00FFFFFF
 # define BLUE 0x000000FF
 # define RED 0x00FF0000
-# define GREEN 0x0000FF00
+# define GREEN 0x0066b048
 # define BLACK 0x0
 # define PI 3.14159265359
 
@@ -47,6 +47,7 @@ typedef struct	s_scene
 	char 	*tmp;
 	int		sprite;
 	int		exit;
+	int		player;
 }				t_scene;
 
 typedef struct 	s_player
