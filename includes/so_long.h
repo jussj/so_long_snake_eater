@@ -16,7 +16,7 @@
 # define WHITE 0x00FFFFFF
 # define BLUE 0x000000FF
 # define RED 0x00FF0000
-# define GREEN 0x0066b048
+# define GREEN 0x0000FF00
 # define BLACK 0x0
 # define PI 3.14159265359
 
