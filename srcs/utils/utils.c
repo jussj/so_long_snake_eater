@@ -6,13 +6,13 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:18:41 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/02 16:42:57 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:20:55 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		debug_info(t_data *data)
+int	debug_info(t_data *data)
 {
 	char buff[150];
 
@@ -35,4 +35,30 @@ int	error_exit(t_data *data, char *msg, int ret_value)
 		write(2, "\n", 1);
 	}
 	return (ret_value);
+}
+
+char	*memjoin(char *s1, char *s2)
+{
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	size;
+	char			*str;
+
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * size + 1);
+	if (!str)
+		return (NULL);
+	while (s1[i])
+		str[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = '\0';
+	free(s1);
+//	free(s2);
+	return (str);
 }

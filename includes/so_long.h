@@ -116,5 +116,6 @@ void		trigger_exit(t_data *data, int pos_x, int pos_y);
 
 int			debug_info(t_data *data);
 int			error_exit(t_data *data, char *msg, int ret_value);
+char		*memjoin(char *s1, char *s2);
 
 #endif

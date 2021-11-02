@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/02 17:15:05 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:21:10 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ int get_map(char *line, t_data *data)
 			data->scene->tmp = ft_strdup(line);
 		else
 		{
-			data->scene->tmp = ft_strjoin(data->scene->tmp, "|");
-			data->scene->tmp = ft_strjoin(data->scene->tmp, line);
+			data->scene->tmp = memjoin(data->scene->tmp, "|");
+			data->scene->tmp = memjoin(data->scene->tmp, line);
 		}
 		free(line);
 		return (0);
 	}
 	else
 	{
-		// free tab
+		free(line);
 		return (1);
 	}
 }
