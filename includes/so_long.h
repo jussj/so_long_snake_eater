@@ -53,9 +53,10 @@ typedef struct	s_scene
 typedef struct 	s_player
 {
 	int color;
+	int moves;
 	float speed;
-	float plan_x;
-	float plan_y;
+//	float plan_x;
+//	float plan_y;
 	float dir_x;
 	float dir_y;
 	float x;
@@ -108,9 +109,12 @@ int			cmd_up(t_data *data);
 int			cmd_down(t_data *data);
 int			close_window(t_data *data);
 
-void cmd_collect(t_data *data, int pos_x, int pos_y);
-void cmd_exit(t_data *data, int pos_x, int pos_y);
+void		trigger_collect(t_data *data, int pos_x, int pos_y);
+void		trigger_exit(t_data *data, int pos_x, int pos_y);
+
+// UTILS
 
 int			debug_info(t_data *data);
+int			error_exit(t_data *data, char *msg, int ret_value);
 
 #endif

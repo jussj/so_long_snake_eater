@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/01 17:55:56 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/02 17:15:05 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,23 @@
 int flood_fill(t_data *data)
 */
 
-// implement win lenght based on map lenght
-
 int is_map_valid(t_data *data)
 {
-	int he;
-	int wi;
+	int map_height;
+	int map_width;
 
-	he = ft_strlen((char *)data->scene->map);
-	wi = ft_strlen(data->scene->map[0]);
-	if (he < wi)
+	map_height = 0;
+	while (data->scene->map[map_height])
+		map_height++;
+	// remove last char from map lines
+	map_width = ft_strlen(data->scene->map[0]) - 1;
+	if (map_height < map_width)
 	{
+		data->scene->win_width = (map_width * CELL_WIDTH);
+		data->scene->win_height = (map_height * CELL_WIDTH) + 100;
 		return (0);
 	}
-	return (1);
+	exit(error_exit(data, "ERROR: INVALID MAP", 1));
 
 }
 

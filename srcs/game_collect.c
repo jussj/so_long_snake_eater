@@ -6,13 +6,13 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 16:44:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/10/31 17:42:12 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:59:29 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void cmd_collect(t_data *data, int pos_x, int pos_y)
+void trigger_collect(t_data *data, int pos_x, int pos_y)
 {
 
 	if (data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] == SPRITE)
@@ -22,12 +22,12 @@ void cmd_collect(t_data *data, int pos_x, int pos_y)
 	}
 }
 
-void cmd_exit(t_data *data, int pos_x, int pos_y)
+void trigger_exit(t_data *data, int pos_x, int pos_y)
 {
 	if (data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] == EXIT
 		&& data->scene->sprite == 0)
 	{
-		printf("GG\n");
+		printf("GG %d MOVES!!\n", data->player->moves);
 		close_window(data);
 	}
 	else
