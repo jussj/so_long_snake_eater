@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 09:36:41 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/02 22:24:27 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/04 13:06:26 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int main(int ac, char **av)
 {
 	t_data	*data;
 
-	data = data_init();
 	if (ac < 2)
-		return (1); 
+		exit(error_exit(NULL, "ERROR: NO MAP", 1));
+	data = data_init();
 	parsing_scene(data, ac, av);
-	player_coordinates(data);
+//	player_coordinates(data);
 	render_init(data);
 	free_data(data);
 	return (0);

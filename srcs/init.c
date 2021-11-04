@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:35:56 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/02 22:37:35 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:24:17 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_img *img_init(void)
 {
 	t_img *img;
 
-	img = malloc(sizeof(*img));
+	img = (t_img *)malloc(sizeof(*img));
 	return (img);
 }
 
@@ -24,7 +24,7 @@ t_scene *scene_init(void)
 {
 	t_scene *scene;
 
-	scene = malloc(sizeof(*scene));
+	scene = (t_scene *)malloc(sizeof(*scene));
 	scene->win_width = 800;
 	scene->win_height = 500;
 	scene->sprite = 0;
@@ -61,7 +61,7 @@ t_player *player_init(void)
 {
 	t_player *player;
 
-	player = malloc(sizeof(*player));
+	player = (t_player *)malloc(sizeof(*player));
 	player->speed = 1;
 	player->dir_x = 1;
 	player->dir_y = 1;
@@ -73,7 +73,7 @@ t_data *data_init(void)
 {
 	t_data *data;
 
-	data = malloc(sizeof(*data));
+	data = (t_data *)malloc(sizeof(*data));
 	data->scene = scene_init();
 	data->img = img_init();
 	data->player = player_init();

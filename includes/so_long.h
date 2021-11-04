@@ -52,15 +52,13 @@ typedef struct	s_scene
 
 typedef struct 	s_player
 {
-	int color;
-	int moves;
-	float speed;
-//	float plan_x;
-//	float plan_y;
-	float dir_x;
-	float dir_y;
-	float x;
-	float y;
+	int		color;
+	int		moves;
+	float	speed;
+	float	dir_x;
+	float	dir_y;
+	float	x;
+	float	y;
 }				t_player;
 
 // CONTROL STRUCTURE
@@ -91,7 +89,7 @@ int			inspect_map(t_data *data);
 
 // RENDER
 
-void		 img_pix_put(t_img *img, int x, int y, int color);
+void		img_pix_put(t_img *img, int x, int y, int color);
 int 		render_background(t_data *data, int color);
 int 		render_cell(t_data *data, double x, double y, int color);
 int 		render_map(t_data *data);
@@ -116,6 +114,7 @@ void		trigger_exit(t_data *data, int pos_x, int pos_y);
 
 int			debug_info(t_data *data);
 int			error_exit(t_data *data, char *msg, int ret_value);
-char		*memjoin(char *s1, char *s2);
+char		*memjoin(char *s1, char *s2, int n);
+char 		*memdup(char *s, int n);
 
 #endif
