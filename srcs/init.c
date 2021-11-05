@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:35:56 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/04 12:24:17 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/05 17:18:28 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_scene *scene_init(void)
 	scene = (t_scene *)malloc(sizeof(*scene));
 	scene->win_width = 800;
 	scene->win_height = 500;
+	scene->map_width = 0;
+	scene->map_height = 0;
 	scene->sprite = 0;
 	scene->exit = 0;
 	scene->player = 0;

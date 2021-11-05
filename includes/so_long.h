@@ -43,6 +43,8 @@ typedef struct	s_scene
 {
 	int		win_width;
 	int		win_height;
+	int		map_width;
+	int		map_height;
 	char 	**map;
 	char 	*tmp;
 	int		sprite;
