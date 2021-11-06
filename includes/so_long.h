@@ -109,9 +109,9 @@ int 		render_background(t_data *data, int color);
 int 		render_cell(t_data *data, double x, double y, int color);
 int 		render_map(t_data *data);
 int			render_player(t_data *data);
-int			render_angle(t_data *data, int color, float width);
 int 		render(t_data *data);
 int 		render_init(t_data *data);
+void		clean_render(t_data *data);
 
 // COMMANDS
 
@@ -128,6 +128,7 @@ void		trigger_exit(t_data *data, int pos_x, int pos_y);
 // UTILS
 
 int			debug_info(t_data *data);
+void		free_tab(char **tab);
 int			error_exit(t_data *data, char *msg, int ret_value);
 char		*memjoin(char *s1, char *s2, int n);
 char 		*memdup(char *s, int n);

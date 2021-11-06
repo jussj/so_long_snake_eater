@@ -15,6 +15,7 @@ RM			=	rm -f
 SRCS		=	srcs/parser.c		\
 				srcs/main.c			\
 				srcs/render.c		\
+				srcs/render_clean.c	\
 				srcs/init.c			\
 				srcs/game_cmd.c		\
 				srcs/game_collect.c	\

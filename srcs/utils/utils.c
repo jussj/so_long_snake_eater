@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:18:41 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/06 15:17:49 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/06 16:47:44 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	debug_info(t_data *data)
 {
 	char buff[150];
 
-//	sprintf(buff, "DIRECTIONS  X %2f Y %2f", data->player->dir_x, data->player->dir_y);
 	sprintf(buff, "COLLECTIBLES LEFT %2d", data->scene->sprite);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 265, 0xFFFFFF, buff);
 	sprintf(buff, "NUMBER OF MOVES   %2d", data->player->moves);
@@ -35,6 +34,18 @@ int	error_exit(t_data *data, char *msg, int ret_value)
 		write(2, "\n", 1);
 	}
 	return (ret_value);
+}
+void	free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while(tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 char	*memjoin(char *s1, char *s2, int n)

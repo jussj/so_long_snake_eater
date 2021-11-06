@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/06 15:18:05 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/06 16:46:20 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int flood_fill(t_data *data, char **map, int flood_x, int flood_y)
 	if (map[flood_x][flood_y] == EMPTY || map[flood_x][flood_y] == 'C'
 		|| map[flood_x][flood_y] == 'E' || map[flood_x][flood_y] == 'P')
 		map[flood_x][flood_y] = '-';
-	int i = 0;
-	while (data->scene->map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}	
-	printf("FLOOD X %d Y %d\n", flood_x, flood_y);
+//	int i = 0;
+//	while (data->scene->map[i])
+//	{
+//		printf("%s\n", map[i]);
+//		i++;
+//	}	
+//	printf("FLOOD X %d Y %d\n", flood_x, flood_y);
 	flood_fill(data, map, flood_x + 1, flood_y);
 	flood_fill(data, map, flood_x - 1, flood_y);
 	flood_fill(data, map, flood_x, flood_y + 1);
@@ -79,7 +79,7 @@ int is_map_closed(t_data *data)
 	flood_y = data->player->y;
 	ret = flood_fill(data, map, flood_x, flood_y);
 	printf("RET FLOOD FILL %d\n", ret);
-//  free map
+  	free_tab(map);
 	return (0);
 }
 
@@ -98,7 +98,6 @@ int init_map(t_data *data)
 		data->scene->win_height = (map_height * CELL_WIDTH) + 100;
 		data->scene->map_width = map_width;
 		data->scene->map_height = map_height;
-		printf("MAP W %d H %d\n", map_width, map_height);
 		return (0);
 	}
 	exit(error_exit(data, "ERROR: INVALID MAP", 1));
@@ -131,7 +130,7 @@ int inspect_map(t_data *data)
 	}
 	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
 		exit(error_exit(data, "ERROR: INVALID MAP", 1));
-	//is_map_closed(data);
+	is_map_closed(data);
 	return (0);
 }
 

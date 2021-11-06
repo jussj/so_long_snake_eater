@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 09:36:41 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/06 15:19:33 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/06 16:48:37 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 int	free_data(t_data *data)
 {
-	int i;
-
-	i = 0;
-	while(data->scene->map[i])
-	{
-		free(data->scene->map[i]);
-		i++;
-	}
-	free(data->scene->map);
+	free_tab(data->scene->map);
 	free(data->scene);
 	free(data->img);
 	free(data->player);
@@ -39,8 +31,6 @@ int main(int ac, char **av)
 		exit(error_exit(NULL, "ERROR: NO MAP", 1));
 	data = data_init();
 	parsing_scene(data, ac, av);
-//	player_coordinates(data);
-
 	render_init(data);
 	free_data(data);
 	return (0);
