@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/05 18:06:08 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/06 15:18:05 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int inspect_map(t_data *data)
 	}
 	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
 		exit(error_exit(data, "ERROR: INVALID MAP", 1));
-	is_map_closed(data);
+	//is_map_closed(data);
 	return (0);
 }
 

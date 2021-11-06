@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:35:56 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/05 17:18:28 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/06 15:17:47 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ t_img *img_init(void)
 
 	img = (t_img *)malloc(sizeof(*img));
 	return (img);
+}
+
+t_text *text_init(void)
+{
+	t_text	*text;
+
+	text = (t_text *)malloc(sizeof(*text));
+	return (text);
 }
 
 t_scene *scene_init(void)
@@ -78,6 +86,7 @@ t_data *data_init(void)
 	data = (t_data *)malloc(sizeof(*data));
 	data->scene = scene_init();
 	data->img = img_init();
+	data->text_wall = text_init();
 	data->player = player_init();
 
 	return(data);

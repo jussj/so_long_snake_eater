@@ -37,6 +37,18 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
+typedef struct	s_text
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}				t_text;
+
+
 // SCENE DATA
 
 typedef struct	s_scene
@@ -69,6 +81,7 @@ typedef struct	s_data
 {
 	t_scene		*scene;
 	t_img		*img;
+	t_text		*text_wall;
 	t_player	*player;
 	void		*mlx_ptr;
 	void		*win_ptr;

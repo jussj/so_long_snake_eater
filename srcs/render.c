@@ -49,7 +49,40 @@ int render_cell(t_data *data, double x, double y, int color)
 	return (0);
 }
 
-//int render_collect(t_data *data)
+int take_pix(int x, int y, t_text *text)
+{
+	unsigned int 	color;
+	unsigned int	*addr_int;
+
+	addr_int = (unsigned int *)text->addr;
+
+
+	//color = y * line_len + x;
+	color = *(addr_int + y * (text->line_len / 4) + x);
+
+	return (color);
+}
+
+int render_text(t_data *data, int x, int y, t_text *text)
+{
+	int i;
+	int j;
+	int	color;
+	
+	i = 0;
+	while (i < CELL_WIDTH)
+	{
+		j = 0;
+		while (j < CELL_WIDTH)
+		{
+			color = take_pix(j * text->width / CELL_WIDTH, i * text->height / CELL_WIDTH, text);
+			img_pix_put(data->img, x * CELL_WIDTH + j, y * CELL_WIDTH + i, color);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int render_map(t_data *data)
 {
@@ -63,14 +96,18 @@ int render_map(t_data *data)
 		while (data->scene->map[i][j])
 		{
 			if (data->scene->map[i][j] == WALL)
-				render_cell(data, j, i, RED);
+			{
+			//	printf("x = %2d\ty = %2d IS WALL\n", j, i);
+				render_text(data, j, i, data->text_wall);
+			}
+				//render_cell(data, j, i, RED);
 			if (data->scene->map[i][j] == EMPTY || data->scene->map[i][j] == SPRITE
 				|| data->scene->map[i][j] == PLAYER)
-				render_cell(data, j, i, GREEN);
+				render_cell(data, j, i, BLACK);
 			if (data->scene->map[i][j] == SPRITE)
-				render_cell(data, j, i, BLUE);
+				render_cell(data, j, i, RED);
 			if (data->scene->map[i][j] == EXIT)
-				render_cell(data, j, i, EXIT);
+				render_cell(data, j, i, WHITE);
 			j++;				
 		}
 		i++;
@@ -98,7 +135,7 @@ int	render_player(t_data *data)
 //		while (j < x + CELL_WIDTH / 2)
 		while (j < x + CELL_WIDTH)
 		{
-			img_pix_put(data->img, j, i, WHITE);
+			img_pix_put(data->img, j, i, 0x878787);
 			j++;
 		}
 		i++;
@@ -133,12 +170,15 @@ int render_init(t_data *data)
 	data->img->mlx_img = mlx_new_image(data->mlx_ptr, data->scene->win_width, data->scene->win_height);
 	data->img->addr = mlx_get_data_addr(data->img->mlx_img, &data->img->bpp, 
 		&data->img->line_len, &data->img->endian);	
+	data->text_wall->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "srcs/textures/snake.xpm", &data->text_wall->width, &data->text_wall->height);
+	data->text_wall->addr = mlx_get_data_addr(data->text_wall->mlx_img, &data->text_wall->bpp, 
+		&data->text_wall->line_len, &data->text_wall->endian);	
+	printf("TEXTURE\n");
+	printf("width = %d\nheight = %d\nbpp = %d\nline_len = %d\n", data->text_wall->width, data->text_wall->height, data->text_wall->bpp, data->text_wall->line_len);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, ClientMessage, StructureNotifyMask, close_window, data);
-	
 	mlx_loop(data->mlx_ptr);
-
 	mlx_destroy_image(data->mlx_ptr, data->img->mlx_img);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
