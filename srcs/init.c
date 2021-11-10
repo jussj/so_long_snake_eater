@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:35:56 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/06 15:17:47 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/10 12:12:28 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_text *text_init(void)
 	t_text	*text;
 
 	text = (t_text *)malloc(sizeof(*text));
+	text->width = 0;
+	text->height = 0;
 	return (text);
 }
 
@@ -87,6 +89,10 @@ t_data *data_init(void)
 	data->scene = scene_init();
 	data->img = img_init();
 	data->text_wall = text_init();
+	data->text_sprite = text_init();
+	data->text_exit = text_init();	
+	data->text_player = text_init();
+	data->text_empty = text_init();
 	data->player = player_init();
 
 	return(data);

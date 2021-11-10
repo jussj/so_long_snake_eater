@@ -93,15 +93,18 @@ int render_map(t_data *data)
 		while (data->scene->map[i][j])
 		{
 			if (data->scene->map[i][j] == WALL)
-				render_cell(data, j, i, RED);
-				//render_text(data, j, i, data->text_wall);
+				render_text(data, j, i, data->text_wall);
+//				render_cell(data, j, i, RED);
 			if (data->scene->map[i][j] == EMPTY || data->scene->map[i][j] == SPRITE
 				|| data->scene->map[i][j] == PLAYER)
-				render_cell(data, j, i, GREEN);
+				render_text(data, j, i, data->text_empty);
+//				render_cell(data, j, i, GREEN);
 			if (data->scene->map[i][j] == SPRITE)
-				render_cell(data, j, i, BLUE);
+				render_text(data, j, i, data->text_sprite);
+//				render_cell(data, j, i, BLUE);
 			if (data->scene->map[i][j] == EXIT)
-				render_cell(data, j, i, BLACK);
+				render_text(data, j, i, data->text_exit);
+//				render_cell(data, j, i, BLACK);
 			j++;				
 		}
 		i++;
@@ -137,12 +140,24 @@ int render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	render_background(data, BLUE);
+	render_background(data, BLACK);
 	render_map(data);
 //	render_player(data);
-	render_text(data, data->player->x, data->player->y, data->text_wall);
+	render_text(data, data->player->x, data->player->y, data->text_player);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->mlx_img, 0, 0);
 	debug_info(data);
+	return (0);
+}
+
+int texture_init(t_data *data, t_text *texture, char *path)
+{
+//	free and destroy in case of error	
+	texture->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path, &texture->width, &texture->height);
+	if (texture->mlx_img == NULL)
+		return (1);
+	texture->addr = mlx_get_data_addr(texture->mlx_img, &texture->bpp, &texture->line_len, &texture->endian);
+	if (texture->addr == NULL)
+		return (1);
 	return (0);
 }
 
@@ -151,7 +166,7 @@ int render_init(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->scene->win_width, data->scene->win_height, "so_long");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->scene->win_width, data->scene->win_height, "SNAKE EATER");
 	if (data->win_ptr == NULL)
 	{
 		free(data->win_ptr);
@@ -159,10 +174,12 @@ int render_init(t_data *data)
 	}
 	data->img->mlx_img = mlx_new_image(data->mlx_ptr, data->scene->win_width, data->scene->win_height);
 	data->img->addr = mlx_get_data_addr(data->img->mlx_img, &data->img->bpp, 
-		&data->img->line_len, &data->img->endian);	
-	data->text_wall->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, "srcs/textures/snake.xpm", &data->text_wall->width, &data->text_wall->height);
-	data->text_wall->addr = mlx_get_data_addr(data->text_wall->mlx_img, &data->text_wall->bpp, 
-		&data->text_wall->line_len, &data->text_wall->endian);	
+		&data->img->line_len, &data->img->endian);
+	texture_init(data, data->text_player, "srcs/textures/snake.xpm");
+	texture_init(data, data->text_empty, "srcs/textures/empty-2.xpm");
+	texture_init(data, data->text_wall, "srcs/textures/wall-1.xpm");
+	texture_init(data, data->text_sprite, "srcs/textures/collectible-1.xpm");
+	texture_init(data, data->text_exit, "srcs/textures/exit-1.xpm");
 	mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, ClientMessage, StructureNotifyMask, close_window, data);

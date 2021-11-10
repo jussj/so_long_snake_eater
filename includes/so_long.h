@@ -12,7 +12,7 @@
 
 # include "../libft/libft.h"
 
-# define CELL_WIDTH 40
+# define CELL_WIDTH 80
 # define WHITE 0x00FFFFFF
 # define BLUE 0x000000FF
 # define RED 0x00FF0000
@@ -81,7 +81,11 @@ typedef struct	s_data
 {
 	t_scene		*scene;
 	t_img		*img;
+	t_text		*text_player;
+	t_text		*text_empty;
 	t_text		*text_wall;
+	t_text		*text_sprite;
+	t_text		*text_exit;	
 	t_player	*player;
 	void		*mlx_ptr;
 	void		*win_ptr;
