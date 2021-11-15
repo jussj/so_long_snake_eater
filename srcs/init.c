@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:35:56 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/10 12:12:28 by anonymous        ###   ########.fr       */
+/*   Updated: 2021/11/15 12:52:11 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_player *player_init(void)
 
 	player = (t_player *)malloc(sizeof(*player));
 	player->speed = 1;
+	player->moves = 0;
 	player->dir_x = 1;
 	player->dir_y = 1;
 	return (player);

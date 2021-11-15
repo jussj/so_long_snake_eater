@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/06 16:46:20 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:08:13 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
 int flood_fill(t_data *data, char **map, int flood_x, int flood_y)
 {
 	if (flood_x < 0 || flood_x >= data->scene->map_height 
@@ -81,6 +82,31 @@ int is_map_closed(t_data *data)
 	printf("RET FLOOD FILL %d\n", ret);
   	free_tab(map);
 	return (0);
+}*/
+
+int is_map_closed(t_data *data, char **tab)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if ((i == 0 || i == (data->scene->map_height - 1)) && tab[i][j] != WALL)
+				return (1);
+			if ((j == 0 || j == (data->scene->map_width - 1)) && tab[i][j] != WALL)
+				return (1);
+			if (tab[i][j] != WALL && tab[i][j] != EMPTY && tab[i][j] != SPRITE
+				&& tab[i][j] != EXIT && tab[i][j] != PLAYER)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int init_map(t_data *data)
@@ -100,15 +126,17 @@ int init_map(t_data *data)
 		data->scene->map_height = map_height;
 		return (0);
 	}
-	exit(error_exit(data, "ERROR: INVALID MAP", 1));
+	exit(exit_error(data, "Error\nInvalid map format\n", 1));
 }
 
 int inspect_map(t_data *data)
 {
 	int i;
 	int j;
+	int ret;
 
 	i = 0;
+	ret = 0;
 	while (data->scene->map[i])
 	{
 		j = 0;
@@ -129,8 +157,10 @@ int inspect_map(t_data *data)
 		i++;
 	}
 	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
-		exit(error_exit(data, "ERROR: INVALID MAP", 1));
-	is_map_closed(data);
+		exit(exit_error(data, "Error\nInvalid map components", 1));
+	ret = is_map_closed(data, data->scene->map);
+	if (ret == 1)
+		exit(exit_error(data, "Error\nMap isn't closed\n", 1));
 	return (0);
 }
 
@@ -175,12 +205,12 @@ int parsing_scene(t_data *data, int ac, char **av)
 	free(data->scene->tmp);
 	init_map(data);
 	inspect_map(data);
-	printf("MAP:\n");
-	i = 0;
-	while (data->scene->map[i])
-	{
-		printf("%s\n", data->scene->map[i]);
-		i++;
-	}
+//	printf("MAP:\n");
+//	i = 0;
+//	while (data->scene->map[i])
+//	{
+//		printf("%s\n", data->scene->map[i]);
+//		i++;
+//	}
 	return (0);
 }

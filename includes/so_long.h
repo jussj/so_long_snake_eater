@@ -58,7 +58,6 @@ typedef struct	s_scene
 	int		map_width;
 	int		map_height;
 	char 	**map;
-	char 	*tmp;
 	int		sprite;
 	int		exit;
 	int		player;
@@ -133,7 +132,9 @@ void		trigger_exit(t_data *data, int pos_x, int pos_y);
 
 int			debug_info(t_data *data);
 void		free_tab(char **tab);
-int			error_exit(t_data *data, char *msg, int ret_value);
+void		free_init_data(t_data *data);
+int			exit_error(t_data *data, char *msg, int ret_value);
+int			exit_success(t_data *data);
 char		*memjoin(char *s1, char *s2, int n);
 char 		*memdup(char *s, int n);
 

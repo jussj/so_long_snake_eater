@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:36:11 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/06 15:18:17 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:07:31 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	exit(EXIT_SUCCESS);
+	exit(exit_success(data));
 }
 
 int cmd_left(t_data *data)
@@ -85,15 +85,15 @@ int handle_keypress(int keysym, t_data *data)
 	if (keysym == XK_Escape)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		exit (EXIT_SUCCESS);
+		exit(exit_success(data));
 	}
-	if (keysym == XK_Left)
+	if (keysym == XK_Left || keysym == XK_a  || keysym == XK_A)
 		cmd_left(data);
-	if (keysym == XK_Right)
+	if (keysym == XK_Right || keysym == XK_d || keysym == XK_D)
 		cmd_right(data);
-	if (keysym == XK_Up)
+	if (keysym == XK_Up || keysym == XK_w || keysym == XK_W)
 		cmd_up(data);
-	if (keysym == XK_Down)
+	if (keysym == XK_Down || keysym == XK_s  || keysym == XK_S)
 		cmd_down(data);
 	trigger_collect(data, data->player->x, data->player->y);
 	trigger_exit(data, data->player->x, data->player->y);

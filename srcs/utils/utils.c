@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:18:41 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/07 10:55:33 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/15 15:36:43 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@ int	debug_info(t_data *data)
 	return (0);	
 }
 
-int	error_exit(t_data *data, char *msg, int ret_value)
+int exit_success(t_data *data)
 {
-	(void)data;
+	free_init_data(data);
+	return (0);
+}
+
+int	exit_error(t_data *data, char *msg, int ret_value)
+{
+	if (ret_value != 0)
+		free_init_data(data);
 	if (msg)
 	{
 		write(2, msg, ft_strlen(msg));
