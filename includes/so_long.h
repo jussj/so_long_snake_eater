@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 17:26:25 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:00:02 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 // SCENE RENDERING
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
@@ -48,7 +48,7 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_text
+typedef struct s_text
 {
 	void	*mlx_img;
 	char	*addr;
@@ -61,20 +61,20 @@ typedef struct	s_text
 
 // SCENE DATA
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	int		win_width;
 	int		win_height;
 	int		map_width;
 	int		map_height;
-	char 	**map;
+	char	**map;
 	char	*tmp;
 	int		sprite;
 	int		exit;
 	int		player;
 }				t_scene;
 
-typedef struct 	s_player
+typedef struct s_player
 {
 	int		color;
 	int		moves;
@@ -87,7 +87,7 @@ typedef struct 	s_player
 
 // CONTROL STRUCTURE
 
-typedef struct	s_data
+typedef struct s_data
 {
 	t_scene		*scene;
 	t_img		*img;
@@ -99,7 +99,6 @@ typedef struct	s_data
 	t_player	*player;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	
 }				t_data;
 
 // INIT
@@ -114,11 +113,11 @@ int			parsing_scene(t_data *data, int ac, char **av);
 // RENDER
 
 void		img_pix_put(t_img *img, int x, int y, int color);
-int 		render_background(t_data *data, int color);
-int 		render_init(t_data *data);
+int			render_background(t_data *data, int color);
+int			render_init(t_data *data);
 int			render_text(t_data *data, int x, int y, t_text *text);
 void		render_clean(t_data *data);
-int 		load_all_textures(t_data *data);
+int			load_all_textures(t_data *data);
 
 // COMMANDS
 
@@ -144,6 +143,6 @@ int			exit_success(t_data *data);
 
 int			debug_info(t_data *data);
 char		*memjoin(char *s1, char *s2, int n);
-char 		*memdup(char *s, int n);
+char		*memdup(char *s, int n);
 
 #endif
