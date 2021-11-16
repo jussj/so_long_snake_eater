@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
+/*   Updated: 2021/11/16 17:26:25 by jusaint-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -13,18 +25,17 @@
 # include "../libft/libft.h"
 
 # define CELL_WIDTH 80
-# define WHITE 0x00FFFFFF
-# define BLUE 0x000000FF
-# define RED 0x00FF0000
-# define GREEN 0x0000FF00
-# define BLACK 0x0
-# define PI 3.14159265359
+# define BLACK 0
 
 # define WALL '1'
 # define SPRITE 'C'
 # define EMPTY '0'
 # define PLAYER 'P'
 # define EXIT 'E'
+
+# define FILE_ERROR 0
+# define PARSING_ERROR 1
+# define MLX_ERROR 2
 
 // SCENE RENDERING
 
@@ -48,7 +59,6 @@ typedef struct	s_text
 	int		height;
 }				t_text;
 
-
 // SCENE DATA
 
 typedef struct	s_scene
@@ -58,6 +68,7 @@ typedef struct	s_scene
 	int		map_width;
 	int		map_height;
 	char 	**map;
+	char	*tmp;
 	int		sprite;
 	int		exit;
 	int		player;
@@ -95,26 +106,19 @@ typedef struct	s_data
 
 void		player_coordinates(t_data *data);
 t_data		*data_init(void);
-t_player	*player_init(void);
-t_scene		*scene_init(void);
-t_img		*img_init(void);
 
 // PARSER
 
 int			parsing_scene(t_data *data, int ac, char **av);
-int			get_map(char *line, t_data *data);
-int			inspect_map(t_data *data);
 
 // RENDER
 
 void		img_pix_put(t_img *img, int x, int y, int color);
 int 		render_background(t_data *data, int color);
-int 		render_cell(t_data *data, double x, double y, int color);
-int 		render_map(t_data *data);
-int			render_player(t_data *data);
-int 		render(t_data *data);
 int 		render_init(t_data *data);
-void		clean_render(t_data *data);
+int			render_text(t_data *data, int x, int y, t_text *text);
+void		render_clean(t_data *data);
+int 		load_all_textures(t_data *data);
 
 // COMMANDS
 
@@ -128,13 +132,17 @@ int			close_window(t_data *data);
 void		trigger_collect(t_data *data, int pos_x, int pos_y);
 void		trigger_exit(t_data *data, int pos_x, int pos_y);
 
+// WHEN I'M CLEANING WINDOWS
+
+void		free_tab(char **tab);
+void		free_texture_ptr(t_data *data);
+void		free_data(t_data *data);
+int			exit_error(t_data *data, char *msg, int ret_value);
+int			exit_success(t_data *data);
+
 // UTILS
 
 int			debug_info(t_data *data);
-void		free_tab(char **tab);
-void		free_init_data(t_data *data);
-int			exit_error(t_data *data, char *msg, int ret_value);
-int			exit_success(t_data *data);
 char		*memjoin(char *s1, char *s2, int n);
 char 		*memdup(char *s, int n);
 

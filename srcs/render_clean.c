@@ -3,62 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   render_clean.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 20:49:23 by anonymous         #+#    #+#             */
-/*   Updated: 2021/11/15 22:31:48 by anonymous        ###   ########.fr       */
+/*   Updated: 2021/11/16 17:29:27 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_data_structure(t_text *texture)
+void	free_tab(char **tab)
 {
-	printf("ENTERING FREE STRUCTURE\n");
-	free(texture->mlx_img);
-//	free(texture->addr);
-	free(texture);
+	int i;
+
+	i = 0;
+	while(tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
-void	free_texture_data(t_data *data)
+void	free_texture_ptr(t_data *data)
 {
-	printf("ENTERING FREE TEXTURE\n");
-	free_data_structure(data->text_player);
-	free_data_structure(data->text_empty);
-	free_data_structure(data->text_wall);
-	free_data_structure(data->text_sprite);
-	free_data_structure(data->text_exit);
+	free(data->text_player);
+	free(data->text_empty);
+	free(data->text_wall);
+	free(data->text_sprite);
+	free(data->text_exit);
 }
 
-void	free_init_data(t_data *data)
+void	free_data(t_data *data)
 {
-	printf("ENTERING FREE INIT\n");
-// free all parsed data
 	free_tab(data->scene->map);
 	free(data->scene);
-// free all textures
-	free_texture_data(data);
-// free img data
-	free(data->img->mlx_img);
-//	free(data->img->mlx_img->data);
-//	free(data->img->addr);
+	free_texture_ptr(data);
 	free(data->img);
+//	free(data->mlx_ptr);
 	free(data->player);
-// free ptr data
-	free(data->mlx_ptr);
-//	free(data->win_ptr);
 	free(data);
 }
 
-void	clean_render(t_data *data)
+void	destroy_render(t_data *data)
 {
-	printf("ENTERING CLEAN RENDER\n");
 	mlx_destroy_image(data->mlx_ptr, data->img->mlx_img);
-// clean off all textures	
 	mlx_destroy_image(data->mlx_ptr, data->text_player->mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->text_wall->mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->text_empty->mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->text_exit->mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->text_sprite->mlx_img);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
+}
+
+int exit_success(t_data *data)
+{
+	destroy_render(data);
+	free_data(data);
+	return (0);
+}
+
+int	exit_error(t_data *data, char *msg, int ret_value)
+{
+	if (msg)
+	{
+		write(2, msg, ft_strlen(msg));
+		write(2, "\n", 1);
+	}
+	if (ret_value == PARSING_ERROR)
+		free_data(data);
+	if (ret_value == FILE_ERROR)
+	{
+		free_texture_ptr(data);
+		free(data->scene);
+		free(data->player);
+		free(data->img);
+		free(data);
+	}
+	else
+	{
+		destroy_render(data);
+		free_data(data);
+	}
+	return (1);
 }

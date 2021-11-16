@@ -12,14 +12,16 @@ SANITIZE	=	-fsanitize=address -g
 
 RM			=	rm -f
 
-SRCS		=	srcs/parser.c		\
-				srcs/main.c			\
-				srcs/render.c		\
-				srcs/render_clean.c	\
-				srcs/init.c			\
-				srcs/game_cmd.c		\
-				srcs/game_collect.c	\
-				srcs/utils/utils.c	\
+SRCS		=	srcs/parser.c				\
+				srcs/main.c					\
+				srcs/render.c				\
+				srcs/render_clean.c			\
+				srcs/render_textures.c		\
+				srcs/render_background.c	\
+				srcs/init.c					\
+				srcs/game_commands.c		\
+				srcs/game_actions.c			\
+				srcs/utils/utils.c			\
 	
 OBJS		=	$(SRCS:.c=.o)
 
