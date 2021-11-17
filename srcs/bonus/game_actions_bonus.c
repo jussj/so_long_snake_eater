@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_actions.c                                     :+:      :+:    :+:   */
+/*   game_actions_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:38:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/17 18:12:50 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:11:47 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void trigger_exit(t_data *data, int pos_x, int pos_y)
 	if (data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] == EXIT
 		&& data->scene->sprite == 0)
 		close_window(data);
+	if (data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] == 'X')
+		close_window(data);
 	else
 		return ;
 }
 
 int	handle_keypress(int keysym, t_data *data)
 { 
-// 	TAKE OFF CHEAT
 	if (keysym == XK_space)
 		player_coordinates(data);
 	if (keysym == XK_Escape)
