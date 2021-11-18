@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 18:00:02 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/18 12:07:06 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define EMPTY '0'
 # define PLAYER 'P'
 # define EXIT 'E'
+# define ENEMY 'X'
 
 # define FILE_ERROR 0
 # define PARSING_ERROR 1

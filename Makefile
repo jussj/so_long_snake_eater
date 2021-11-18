@@ -51,6 +51,7 @@ $(LIBFT):
 $(MLX):		
 			@echo "\e[34mMINILIBX COMPILATION...\e[0m"
 			@cd minilibx-linux && ./configure && make
+# ADD REPO INSTALL
 
 $(NAME):	$(OBJS)
 			@echo "\e[34mSO_LONG COMPILATION...\e[0m"

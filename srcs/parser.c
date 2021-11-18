@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 16:34:33 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/18 13:48:04 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int init_map(t_data *data)
 		data->scene->map_height = map_height;
 		return (0);
 	}
-	exit(exit_error(data, "Error\nInvalid map format", 1));
+	exit(exit_error(data, "Invalid map format", 1));
 }
 
 int inspect_map(t_data *data)
@@ -80,15 +80,19 @@ int inspect_map(t_data *data)
 				data->player->x = j;
 				data->player->y = i;
 			}
+			else if (data->scene->map[i][j] != WALL
+				&& data->scene->map[i][j] != EMPTY)
+				exit(exit_error(data, "Invalid map components", PARSING_ERROR));
 			j++;
 		}
 		i++;
 	}
+// LEAKS ON ERROR EXIT
 	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
-		exit(exit_error(data, "Error\nInvalid map components", PARSING_ERROR));
+		exit(exit_error(data, "Invalid map components", PARSING_ERROR));
 	ret = is_map_closed(data, data->scene->map);
 	if (ret == 1)
-		exit(exit_error(data, "Error\nMap isn't closed", PARSING_ERROR));
+		exit(exit_error(data, "Map isn't closed", PARSING_ERROR));
 	return (0);
 }
 
@@ -127,7 +131,7 @@ int parsing_scene(t_data *data, int ac, char **av)
 	(void)ac;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		exit(exit_error(data, "Error\nInvalid map file", FILE_ERROR));
+		exit(exit_error(data, "Invalid map file", FILE_ERROR));
 	while ((i = get_next_line(fd, &line)) > 0)
 		get_map(line, data);
 	get_map(line, data);

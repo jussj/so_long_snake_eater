@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_clean.c                                     :+:      :+:    :+:   */
+/*   render_clean_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 20:49:23 by anonymous         #+#    #+#             */
-/*   Updated: 2021/11/17 16:36:56 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/18 13:49:19 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	exit_error(t_data *data, char *msg, int ret_value)
 	}
 	if (ret_value == PARSING_ERROR)
 		free_data(data);
-	if (ret_value == FILE_ERROR)
+	else if (ret_value == FILE_ERROR)
 	{
 		free_texture_ptr(data);
 		free(data->scene);

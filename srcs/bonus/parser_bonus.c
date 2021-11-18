@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 16:34:33 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/18 13:53:38 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int is_map_closed(t_data *data, char **tab)
 {
@@ -80,12 +80,16 @@ int inspect_map(t_data *data)
 				data->player->x = j;
 				data->player->y = i;
 			}
+			else if (data->scene->map[i][j] != WALL
+				&& data->scene->map[i][j] != EMPTY
+				&& data->scene->map[i][j] != 'X')
+				exit(exit_error(data, "Invalid map components 1", PARSING_ERROR));
 			j++;
 		}
 		i++;
 	}
 	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
-		exit(exit_error(data, "Error\nInvalid map components", PARSING_ERROR));
+		exit(exit_error(data, "Error\nInvalid map components 2", PARSING_ERROR));
 	ret = is_map_closed(data, data->scene->map);
 	if (ret == 1)
 		exit(exit_error(data, "Error\nMap isn't closed", PARSING_ERROR));
