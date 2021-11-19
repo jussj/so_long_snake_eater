@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/18 13:53:38 by anonymous        ###   ########.fr       */
+/*   Updated: 2021/11/19 11:50:13 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int inspect_map(t_data *data)
 			}
 			else if (data->scene->map[i][j] != WALL
 				&& data->scene->map[i][j] != EMPTY
-				&& data->scene->map[i][j] != 'X')
+				&& data->scene->map[i][j] != ENEMY)
 				exit(exit_error(data, "Invalid map components 1", PARSING_ERROR));
 			j++;
 		}

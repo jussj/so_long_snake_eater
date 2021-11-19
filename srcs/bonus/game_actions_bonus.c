@@ -6,11 +6,11 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:38:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/17 18:11:47 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:48:38 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	close_window(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:10:21 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 18:01:58 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/19 18:18:07 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,26 @@ int	debug_info(t_data *data)
 	sprintf(buff, "COORDINATES X %2f Y %2f", data->player->x, data->player->y);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, dis + 50, 0xFFFFFF, buff);
 	return (0);	
+}
+
+int	check_extension(char *filename, char *suffix)
+{
+	int i;
+	int index;
+
+	i = 0;
+	index = ft_strlen(filename) - ft_strlen(suffix);
+	while (filename[i])
+	{
+		if (filename[i] == '.' && i == index - 1)
+		{
+			i++;
+			if (ft_strncmp(&filename[i], suffix, ft_strlen(suffix)) == 0)
+				return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 char	*memjoin(char *s1, char *s2, int n)

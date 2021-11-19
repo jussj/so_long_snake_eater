@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 18:00:02 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/19 18:17:45 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_data		*data_init(void);
 // PARSER
 
 int			parsing_scene(t_data *data, int ac, char **av);
+int			check_extension(char *filename, char *suffix);
 
 // RENDER
 

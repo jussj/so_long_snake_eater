@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_clean_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 20:49:23 by anonymous         #+#    #+#             */
-/*   Updated: 2021/11/18 13:49:19 by anonymous        ###   ########.fr       */
+/*   Updated: 2021/11/19 11:49:41 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_tab(char **tab)
 {
