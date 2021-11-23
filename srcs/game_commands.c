@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_cmd.c                                         :+:      :+:    :+:   */
+/*   game_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:20:09 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/16 17:37:10 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:06:01 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	cmd_left(t_data *data)
 	{
 		data->player->x = new_pos_x;
 		data->player->moves++;
+		print_moves(data->player->moves);
 		return (0);
 	}
 	else
@@ -38,6 +39,7 @@ int	cmd_right(t_data *data)
 	{
 		data->player->x = new_pos_x;
 		data->player->moves++;
+		print_moves(data->player->moves);
 		return (0);
 	}
 	else
@@ -54,6 +56,7 @@ int	cmd_up(t_data *data)
 	{
 		data->player->y = new_pos_y;
 		data->player->moves++;
+		print_moves(data->player->moves);
 		return (0);
 	}
 	else
@@ -70,6 +73,7 @@ int	cmd_down(t_data *data)
 	{
 		data->player->y = new_pos_y;
 		data->player->moves++;
+		print_moves(data->player->moves);
 		return (0);
 	}
 	else

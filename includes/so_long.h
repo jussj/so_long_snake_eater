@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/19 18:17:45 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 18:52:53 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@
 # define EMPTY '0'
 # define PLAYER 'P'
 # define EXIT 'E'
-
-# define FILE_ERROR 0
-# define PARSING_ERROR 1
-# define MLX_ERROR 2
 
 // SCENE RENDERING
 
@@ -108,7 +104,7 @@ t_data		*data_init(void);
 
 // PARSER
 
-int			parsing_scene(t_data *data, int ac, char **av);
+void		parsing_scene(t_data *data, int ac, char **av);
 int			check_extension(char *filename, char *suffix);
 
 // RENDER
@@ -119,6 +115,7 @@ int			render_init(t_data *data);
 int			render_text(t_data *data, int x, int y, t_text *text);
 void		render_clean(t_data *data);
 int			load_all_textures(t_data *data);
+int			print_moves(int moves);
 
 // COMMANDS
 
@@ -137,7 +134,8 @@ void		trigger_exit(t_data *data, int pos_x, int pos_y);
 void		free_tab(char **tab);
 void		free_texture_ptr(t_data *data);
 void		free_data(t_data *data);
-int			exit_error(t_data *data, char *msg, int ret_value);
+void		destroy_render(t_data *data);
+int			exit_error(t_data *data, char *msg);
 int			exit_success(t_data *data);
 
 // UTILS

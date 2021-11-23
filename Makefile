@@ -17,12 +17,13 @@ RM			=	rm -f
 SRCS		=	srcs/parser.c					\
 				srcs/main.c						\
 				srcs/render.c					\
-				srcs/render_clean.c				\
 				srcs/render_textures.c			\
 				srcs/render_background.c		\
 				srcs/init.c						\
 				srcs/game_commands.c			\
 				srcs/game_actions.c				\
+				srcs/exit.c						\
+				srcs/exit_clean.c				\
 				srcs/utils/utils.c				\
 
 SRCS_BONUS	= 	srcs/bonus/game_actions_bonus.c  	\
@@ -68,8 +69,9 @@ clean:
 			$(RM) $(OBJS) 
 			$(MAKE) clean -C "libft"
 
-fclean:		clean
-			$(RM) $(NAME) $(BONUS)
+fclean:
+			$(RM) $(OBJS) $(NAME) $(BONUS)
+			$(MAKE) fclean -C "libft"
 
 re:			fclean all
 

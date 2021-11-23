@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/19 18:23:29 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 17:21:24 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	is_map_closed(t_data *data, char **tab)
 	return (0);
 }
 
-void	init_map(t_data *data)
+int		init_map(t_data *data)
 {
 	int map_height;
 	int map_width;
 
 	map_height = 0;
 	if (!data->scene->map)
-		exit(exit_error(data, "Empty map", FILE_ERROR));
+		exit(exit_error(data, "Empty map"));
 	while (data->scene->map[map_height])
 		map_height++;
 	map_width = ft_strlen(data->scene->map[0]);
@@ -56,7 +56,7 @@ void	init_map(t_data *data)
 		data->scene->map_height = map_height;
 		return (0);
 	}
-	exit(exit_error(data, "Invalid map format", 1));
+	exit(exit_error(data, "Invalid map format"));
 }
 
 void	inspect_map(t_data *data)
@@ -84,11 +84,11 @@ void	inspect_map(t_data *data)
 			}
 			else if (data->scene->map[i][j] != WALL 
 				&& data->scene->map[i][j] != EMPTY)
-				exit(exit_error(data, "Invalid map components", PARSING_ERROR));
+				exit(exit_error(data, "Invalid map components"));
 			j++;
 		}
 		if ((int)ft_strlen(data->scene->map[i]) != len)
-			exit(exit_error(data, "Invalid map format", PARSING_ERROR));
+			exit(exit_error(data, "Invalid map format"));
 
 		i++;
 	}
@@ -127,21 +127,21 @@ void	parsing_scene(t_data *data, int ac, char **av)
 
 	(void)ac;
 	if (check_extension(av[1], "ber") == 0)
-		exit(exit_error(data, "Invalid file extension", FILE_ERROR));
+		exit(exit_error(data, "Invalid file extension"));
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		exit(exit_error(data, "Invalid map file", FILE_ERROR));
+		exit(exit_error(data, "Invalid map file"));
 	while ((i = get_next_line(fd, &line)) > 0)
 		get_map(line, data);
 	if (i < 0)
-		exit(exit_error(data, "Invalid map file", FILE_ERROR));
+		exit(exit_error(data, "Invalid map file"));
 	get_map(line, data);
 	data->scene->map = ft_split(data->scene->tmp, '|');
 	free(data->scene->tmp);
 	init_map(data);
 	inspect_map(data);
 	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
-		exit(exit_error(data, "Invalid map components", PARSING_ERROR));
+		exit(exit_error(data, "Invalid map components"));
 	if (is_map_closed(data, data->scene->map) == 1)
-		exit(exit_error(data, "Map isn't closed", PARSING_ERROR));
+		exit(exit_error(data, "Map isn't closed"));
 }

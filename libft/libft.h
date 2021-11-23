@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 15:03:29 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/09/14 14:15:44 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 17:26:11 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #  define FD_MAX 256
 # endif
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -34,7 +34,7 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
-void			ft_putnbr_base(long int, char *base);
+void			ft_putnbr_base(long int nb, char *base);
 
 int				ft_isalpha(int c);
 int				ft_isalnum(int c);
@@ -85,6 +85,6 @@ int				ft_nblen_base(long long n, int base);
 int				ft_putstr_len(char *s);
 int				ft_atoi_base(char *str, char *base);
 int				ft_iswhitespace(int c);
-char			*ft_free_malloc (char *str);
+char			*ft_free_malloc(char *str);
 
 #endif
