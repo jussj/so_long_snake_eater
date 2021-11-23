@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:52:53 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 19:19:10 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ typedef struct s_scene
 {
 	int		win_width;
 	int		win_height;
-	int		map_width;
-	int		map_height;
+	int		map_w;
+	int		map_h;
 	char	**map;
 	char	*tmp;
 	int		sprite;

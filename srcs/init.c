@@ -6,15 +6,15 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:29:46 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:55:10 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 19:29:01 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_img *img_init(t_data *data)
+t_img	*img_init(t_data *data)
 {
-	t_img *img;
+	t_img	*img;
 
 	img = (t_img *)malloc(sizeof(*img));
 	if (img == NULL)
@@ -22,7 +22,7 @@ t_img *img_init(t_data *data)
 	return (img);
 }
 
-t_text *text_init(t_data *data)
+t_text	*text_init(t_data *data)
 {
 	t_text	*text;
 
@@ -35,17 +35,17 @@ t_text *text_init(t_data *data)
 	return (text);
 }
 
-t_scene *scene_init(t_data *data)
+t_scene	*scene_init(t_data *data)
 {
-	t_scene *scene;
+	t_scene	*scene;
 
 	scene = (t_scene *)malloc(sizeof(*scene));
 	if (scene == NULL)
 		exit(exit_error(data, "Memory allocation failed"));
 	scene->win_width = 0;
 	scene->win_height = 0;
-	scene->map_width = 0;
-	scene->map_height = 0;
+	scene->map_w = 0;
+	scene->map_h = 0;
 	scene->sprite = 0;
 	scene->exit = 0;
 	scene->player = 0;
@@ -55,8 +55,8 @@ t_scene *scene_init(t_data *data)
 
 void	player_coordinates(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (data->scene->map[i])
@@ -75,9 +75,9 @@ void	player_coordinates(t_data *data)
 	}
 }
 
-t_player *player_init(t_data *data)
+t_player	*player_init(t_data *data)
 {
-	t_player *player;
+	t_player	*player;
 
 	player = (t_player *)malloc(sizeof(*player));
 	if (player == NULL)

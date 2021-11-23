@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 17:21:24 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/23 19:23:18 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,36 @@
 int	is_map_closed(t_data *data, char **tab)
 {
 	int	i;
-	int j;
+	int	j;
+	int	len;
 
 	i = 0;
+	len = ft_strlen(data->scene->map[i]);
 	while (tab[i])
 	{
 		j = 0;
 		while (tab[i][j])
 		{
-			if ((i == 0 || i == (data->scene->map_height) - 1) && tab[i][j] != WALL)
+			if ((i == 0 || i == (data->scene->map_h) - 1) && tab[i][j] != WALL)
 				return (1);
-			if ((j == 0 || j == (data->scene->map_width) - 1) && tab[i][j] != WALL)
+			if ((j == 0 || j == (data->scene->map_w) - 1) && tab[i][j] != WALL)
 				return (1);
 			if (tab[i][j] != WALL && tab[i][j] != EMPTY && tab[i][j] != SPRITE
 				&& tab[i][j] != EXIT && tab[i][j] != PLAYER)
 				return (1);
 			j++;
 		}
+		if ((int)ft_strlen(data->scene->map[i]) != len)
+			exit(exit_error(data, "Invalid map format"));
 		i++;
 	}
 	return (0);
 }
 
-int		init_map(t_data *data)
+int	init_map(t_data *data)
 {
-	int map_height;
-	int map_width;
+	int	map_height;
+	int	map_width;
 
 	map_height = 0;
 	if (!data->scene->map)
@@ -52,21 +56,20 @@ int		init_map(t_data *data)
 	{
 		data->scene->win_width = map_width * CELL_WIDTH;
 		data->scene->win_height = (map_height * CELL_WIDTH) + 100;
-		data->scene->map_width = map_width;
-		data->scene->map_height = map_height;
+		data->scene->map_w = map_width;
+		data->scene->map_h = map_height;
 		return (0);
 	}
 	exit(exit_error(data, "Invalid map format"));
 }
 
+// LEAKS ON EXIT?
 void	inspect_map(t_data *data)
 {
-	int i;
-	int j;
-	int len;
+	int	i;
+	int	j;
 
 	i = 0;
-	len = ft_strlen(data->scene->map[i]);
 	while (data->scene->map[i])
 	{
 		j = 0;
@@ -82,22 +85,18 @@ void	inspect_map(t_data *data)
 				data->player->x = j;
 				data->player->y = i;
 			}
-			else if (data->scene->map[i][j] != WALL 
+			else if (data->scene->map[i][j] != WALL
 				&& data->scene->map[i][j] != EMPTY)
 				exit(exit_error(data, "Invalid map components"));
 			j++;
 		}
-		if ((int)ft_strlen(data->scene->map[i]) != len)
-			exit(exit_error(data, "Invalid map format"));
-
 		i++;
 	}
-//	LEAKS ON ERROR EXIT
 }
 
-int get_map(char *line, t_data *data)
+int	get_map(char *line, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_isdigit(line[i]) == 1)
@@ -121,9 +120,9 @@ int get_map(char *line, t_data *data)
 
 void	parsing_scene(t_data *data, int ac, char **av)
 {
-	int i;
-	int fd;
-	char *line;
+	int		i;
+	int		fd;
+	char	*line;
 
 	(void)ac;
 	if (check_extension(av[1], "ber") == 0)
@@ -140,7 +139,8 @@ void	parsing_scene(t_data *data, int ac, char **av)
 	free(data->scene->tmp);
 	init_map(data);
 	inspect_map(data);
-	if (data->scene->sprite < 1 || data->scene->exit < 1 || data->scene->player != 1)
+	if (data->scene->sprite < 1 || data->scene->exit < 1
+		|| data->scene->player != 1)
 		exit(exit_error(data, "Invalid map components"));
 	if (is_map_closed(data, data->scene->map) == 1)
 		exit(exit_error(data, "Map isn't closed"));
