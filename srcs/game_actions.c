@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:38:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/17 18:12:50 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:22:56 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int	close_window(t_data *data)
 {
-//	clean_render(data);
 	exit(exit_success(data));
 }
 
-void trigger_collect(t_data *data, int pos_x, int pos_y)
+void	trigger_collect(t_data *data, int pos_x, int pos_y)
 {
-
 	if (data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] == SPRITE)
 	{
 		data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] = EMPTY;
@@ -28,7 +26,7 @@ void trigger_collect(t_data *data, int pos_x, int pos_y)
 	}
 }
 
-void trigger_exit(t_data *data, int pos_x, int pos_y)
+void	trigger_exit(t_data *data, int pos_x, int pos_y)
 {
 	if (data->scene->map[(int)(pos_y + 0.50)][(int)(pos_x + 0.50)] == EXIT
 		&& data->scene->sprite == 0)
@@ -38,21 +36,17 @@ void trigger_exit(t_data *data, int pos_x, int pos_y)
 }
 
 int	handle_keypress(int keysym, t_data *data)
-{ 
-// 	TAKE OFF CHEAT
-	if (keysym == XK_space)
-		player_coordinates(data);
+{
 	if (keysym == XK_Escape)
 		close_window(data);
-	if (keysym == XK_Left || keysym == XK_a  || keysym == XK_A)
+	if (keysym == XK_Left || keysym == XK_a || keysym == XK_A)
 		cmd_left(data);
 	if (keysym == XK_Right || keysym == XK_d || keysym == XK_D)
 		cmd_right(data);
 	if (keysym == XK_Up || keysym == XK_w || keysym == XK_W)
 		cmd_up(data);
-	if (keysym == XK_Down || keysym == XK_s  || keysym == XK_S)
+	if (keysym == XK_Down || keysym == XK_s || keysym == XK_S)
 		cmd_down(data);
-// 	CHANGE FUNCC NAME FOR EVENTS
 	trigger_collect(data, data->player->x, data->player->y);
 	trigger_exit(data, data->player->x, data->player->y);
 	return (0);

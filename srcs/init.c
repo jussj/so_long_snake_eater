@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:29:46 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 19:29:01 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:42:35 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,6 @@ t_scene	*scene_init(t_data *data)
 	return (scene);
 }
 
-void	player_coordinates(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (data->scene->map[i])
-	{
-		j = 0;
-		while (data->scene->map[i][j])
-		{
-			if (data->scene->map[i][j] == 'P')
-			{
-				data->player->x = j;
-				data->player->y = i;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 t_player	*player_init(t_data *data)
 {
 	t_player	*player;
@@ -89,17 +67,9 @@ t_player	*player_init(t_data *data)
 	return (player);
 }
 
-void	init_to_null(t_data *data)
-{
-	data->win_ptr = NULL;
-	data->mlx_ptr = NULL;
-	data->img->mlx_img = NULL;
-
-}
-
 t_data	*data_init(void)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(*data));
 	if (data == NULL)
@@ -115,12 +85,12 @@ t_data	*data_init(void)
 		exit(1);
 	}
 	init_to_null(data);
-	data->scene = scene_init(data);
 	data->text_wall = text_init(data);
 	data->text_sprite = text_init(data);
-	data->text_exit = text_init(data);	
+	data->text_exit = text_init(data);
 	data->text_player = text_init(data);
 	data->text_empty = text_init(data);
 	data->player = player_init(data);
-	return(data);
+	data->scene = scene_init(data);
+	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:02:40 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 19:23:18 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:12:34 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	init_map(t_data *data)
 	if (map_height > 0 || map_width > 0 || map_height != map_width)
 	{
 		data->scene->win_width = map_width * CELL_WIDTH;
-		data->scene->win_height = (map_height * CELL_WIDTH) + 100;
+		data->scene->win_height = (map_height * CELL_WIDTH);
 		data->scene->map_w = map_width;
 		data->scene->map_h = map_height;
 		return (0);
@@ -63,7 +63,6 @@ int	init_map(t_data *data)
 	exit(exit_error(data, "Invalid map format"));
 }
 
-// LEAKS ON EXIT?
 void	inspect_map(t_data *data)
 {
 	int	i;
@@ -82,8 +81,7 @@ void	inspect_map(t_data *data)
 			else if (data->scene->map[i][j] == PLAYER)
 			{
 				data->scene->player++;
-				data->player->x = j;
-				data->player->y = i;
+				player_coordinates(data, j, i);
 			}
 			else if (data->scene->map[i][j] != WALL
 				&& data->scene->map[i][j] != EMPTY)
@@ -118,22 +116,23 @@ int	get_map(char *line, t_data *data)
 	}
 }
 
-void	parsing_scene(t_data *data, int ac, char **av)
+void	parsing_scene(t_data *data, char **av)
 {
 	int		i;
 	int		fd;
 	char	*line;
 
-	(void)ac;
 	if (check_extension(av[1], "ber") == 0)
 		exit(exit_error(data, "Invalid file extension"));
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		exit(exit_error(data, "Invalid map file"));
-	while ((i = get_next_line(fd, &line)) > 0)
+	i = get_next_line(fd, &line);
+	while (i > 0)
+	{
 		get_map(line, data);
-	if (i < 0)
-		exit(exit_error(data, "Invalid map file"));
+		i = get_next_line(fd, &line);
+	}
 	get_map(line, data);
 	data->scene->map = ft_split(data->scene->tmp, '|');
 	free(data->scene->tmp);

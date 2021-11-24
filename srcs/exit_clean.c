@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:35:51 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:37:08 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:25:34 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(!tab)
+	if (!tab)
 		return ;
-	while(tab[i])
+	while (tab[i])
 	{
 		free(tab[i]);
 		i++;

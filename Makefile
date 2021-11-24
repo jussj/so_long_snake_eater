@@ -25,6 +25,7 @@ SRCS		=	srcs/parser.c					\
 				srcs/exit.c						\
 				srcs/exit_clean.c				\
 				srcs/utils/utils.c				\
+				srcs/utils/parsing_utils.c		\
 
 SRCS_BONUS	= 	srcs/bonus/game_actions_bonus.c  	\
 				srcs/bonus/parser_bonus.c			\
@@ -50,9 +51,10 @@ $(LIBFT):
 			$(MAKE) -C "libft"
 
 $(MLX):		
-			@echo "\e[34mMINILIBX COMPILATION...\e[0m"
+			@echo "\e[34mMINILIBX INSTALLATION...\e[0m"
+			@gcl https://github.com/42Paris/minilibx-linux.git
 			@cd minilibx-linux && ./configure && make
-# ADD REPO INSTALL
+# CHECK REPO INSTALL
 
 $(NAME):	$(OBJS)
 			@echo "\e[34mSO_LONG COMPILATION...\e[0m"

@@ -6,13 +6,13 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:35:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:52:10 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:20:43 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int exit_success(t_data *data)
+int	exit_success(t_data *data)
 {
 	destroy_render(data);
 	free_data(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/18 12:07:06 by anonymous        ###   ########.fr       */
+/*   Updated: 2021/11/24 15:51:39 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,12 @@ typedef struct s_data
 	t_scene		*scene;
 	t_img		*img;
 	t_text		*text_player;
+	t_text		*text_player_knife;
 	t_text		*text_empty;
 	t_text		*text_wall;
 	t_text		*text_sprite;
+	t_text		*text_sprite_2;
+	t_text		*text_enemy;
 	t_text		*text_exit;	
 	t_player	*player;
 	void		*mlx_ptr;

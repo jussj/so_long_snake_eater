@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:14:05 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 19:19:10 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:46:51 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,13 @@ typedef struct s_data
 
 // INIT
 
-void		player_coordinates(t_data *data);
+void		player_coordinates(t_data *data, int x, int y);
+void		init_to_null(t_data *data);
 t_data		*data_init(void);
 
 // PARSER
 
-void		parsing_scene(t_data *data, int ac, char **av);
+void		parsing_scene(t_data *data, char **av);
 int			check_extension(char *filename, char *suffix);
 
 // RENDER

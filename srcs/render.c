@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:38:10 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:47:14 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 12:38:41 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	render(t_data *data)
 	render_text(data, data->player->x, data->player->y, data->text_player);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img->mlx_img, 0, 0);
-// PRINT DEBUG INFOS
-	debug_info(data);
 	return (0);
 }
 

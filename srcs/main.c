@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:21:36 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/23 19:24:00 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:35:53 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	data = data_init();
-	parsing_scene(data, ac, av);
+	parsing_scene(data, av);
 	render_init(data);
 	free_data(data);
 	return (0);
