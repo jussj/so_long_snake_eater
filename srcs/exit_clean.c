@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:35:51 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/24 15:25:34 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:32:10 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ void	free_texture_ptr(t_data *data)
 
 void	free_data(t_data *data)
 {
-	free_tab(data->scene->map);
 	free_texture_ptr(data);
 	if (data->scene != NULL)
+	{
+		free_tab(data->scene->map);
 		free(data->scene);
+	}
 	if (data->img != NULL)
 		free(data->img);
 	if (data->player != NULL)

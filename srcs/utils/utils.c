@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:10:21 by jusaint-          #+#    #+#             */
-/*   Updated: 2021/11/24 13:48:48 by jusaint-         ###   ########.fr       */
+/*   Updated: 2021/11/25 12:02:25 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ void	init_to_null(t_data *data)
 	data->win_ptr = NULL;
 	data->mlx_ptr = NULL;
 	data->img->mlx_img = NULL;
+	data->scene = NULL;
+	data->player = NULL;
+	data->text_player = NULL;
+	data->text_empty = NULL;
+	data->text_wall = NULL;
+	data->text_sprite = NULL;
+	data->text_exit = NULL;
 }
