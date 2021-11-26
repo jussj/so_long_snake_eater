@@ -1,6 +1,8 @@
-NAME		=	so_long
+NAME		=	so_long_snake_eater
 
-LIBFT		=	libft.a
+LIBFT		=	libft/libft.a
+
+MLX			= 	minilibx-linux/libmlx.a
 
 INCL		=	$(addprefix -I , includes/)
 
@@ -34,10 +36,8 @@ $(LIBFT):
 			$(MAKE) -C "libft"
 
 $(MLX):		
-			@echo "\e[34mMINILIBX INSTALLATION...\e[0m"
-			@gcl https://github.com/42Paris/minilibx-linux.git
+			@echo "\e[34mMINILIBX CONFIGURATION...\e[0m"
 			@cd minilibx-linux && ./configure && make
-# CHECK REPO INSTALL
 
 $(NAME):	$(OBJS)
 			@echo "\e[34mSO_LONG COMPILATION...\e[0m"
