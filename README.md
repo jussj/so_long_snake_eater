@@ -4,7 +4,6 @@ with the minimum number of moves before leaving the jungle and kicking some sovi
 
 ## installation
 * clone the repo
-* if not installed yet, clone the minilibx repo at the root (available at [this address](https://github.com/42Paris/minilibx-linux.git))
 * make
 * choose the map you prefer in the dedicated folder at the root of the repository, create your own (go to map rules for further informations), and pass it as an argument: ```./so_long_snake_eater [path/to/any/map.ber]```
 
@@ -12,7 +11,6 @@ with the minimum number of moves before leaving the jungle and kicking some sovi
 ```
 git clone https://github.com/jussj/so_long_snake_eater.git &&
 cd so_long_snake_eater &&
-git clone https://github.com/42Paris/minilibx-linux.git &&
 make &&
 ./so_long_snake_eater maps/map_1.ber
 ```
