@@ -41,7 +41,7 @@ $(MLX):
 
 $(NAME):	$(OBJS)
 			@echo "\e[34mSO_LONG COMPILATION...\e[0m"
-			$(CC) $(CFLAGS) $^ -L "libft" -L "minilibx-linux" -lmlx -lft -lbsd -lXext -lX11 -lm -o $(NAME)
+			$(CC) $(CFLAGS) $^ -L "libft" -L "minilibx-linux" -lmlx -lft -lXext -lX11 -lm -o $(NAME)
 
 %.o:		%.c
 			$(CC) $(CFLAGS) -c $< $(INCL) -o $@

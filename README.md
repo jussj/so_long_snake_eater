@@ -2,6 +2,8 @@
 *so long snake eater* is a small 2D project part of 42 school's curriculum. the goal of the game is to collect snake's favorite food 
 with the minimum number of moves before leaving the jungle and kicking some soviet asses.
 
+
+
 ## installation
 * clone the repo
 * make
